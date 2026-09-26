@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "iletisims",
+  "info": {
+    "singularName": "iletisim",
+    "pluralName": "iletisims",
+    "displayName": "letisim",
+    "description": "Genel Iletisim Bilgileri"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "instagram": {
+      "type": "string"
+    },
+    "twitter": {
+      "type": "string"
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "youtube": {
+      "type": "string"
+    },
+    "pinterest": {
+      "type": "string"
+    },
+    "telegram": {
+      "type": "string"
+    }
+  }
+}

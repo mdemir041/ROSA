@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "events",
+  "info": {
+    "singularName": "event",
+    "pluralName": "events",
+    "displayName": "Event"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "datetime",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Etkinlik",
+        "Dava"
+      ],
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "locationOrLink": {
+      "type": "string"
+    },
+    "imgUrl": {
+      "type": "string"
+    },
+    "lang": {
+      "type": "enumeration",
+      "enum": ["TR", "EN", "KU"],
+      "default": "TR",
+      "required": true
+    }
+  }
+}

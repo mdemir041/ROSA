@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "banka_hesabis",
+  "info": {
+    "singularName": "banka-hesabi",
+    "pluralName": "banka-hesabis",
+    "displayName": "Banka Hesabı",
+    "description": "Rosa Kadın Derneği Banka Hesapları"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "bankName": {
+      "type": "string",
+      "required": true
+    },
+    "accountHolder": {
+      "type": "string",
+      "required": true
+    },
+    "iban": {
+      "type": "string",
+      "required": true
+    },
+    "branch": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

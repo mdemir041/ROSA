@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "site-settings",
+  "info": {
+    "singularName": "site-setting",
+    "pluralName": "site-settings",
+    "displayName": "site-setting"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "lang": {
+      "type": "string",
+      "required": true,
+      "default": "TR"
+    },
+    "data": {
+      "type": "json",
+      "required": true
+    }
+  }
+}

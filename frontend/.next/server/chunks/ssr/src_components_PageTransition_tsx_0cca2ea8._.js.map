@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/DEM%C4%B0R/Desktop/%C3%A7al%C4%B1%C5%9Fmalar/Rosa-Sistemi/frontend/src/components/PageTransition.tsx"],"sourcesContent":["\"use client\";\n\nimport React from \"react\";\nimport { motion } from \"framer-motion\";\nimport { usePathname } from \"next/navigation\";\n\nexport default function PageTransition({ children }: { children: React.ReactNode }) {\n  return (\n    <div className=\"flex-1 w-full flex flex-col\">\n      {children}\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AAAA;;AAMe,SAAS,eAAe,EAAE,QAAQ,EAAiC;IAChF,qBACE,8OAAC;QAAI,WAAU;kBACZ;;;;;;AAGP","debugId":null}}]
+}

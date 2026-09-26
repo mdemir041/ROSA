@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "applications",
+  "info": {
+    "singularName": "application",
+    "pluralName": "applications",
+    "displayName": "Application"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "surname": {
+      "type": "string",
+      "required": true
+    },
+    "topic": {
+      "type": "text",
+      "required": true
+    },
+    "supportType": {
+      "type": "enumeration",
+      "enum": [
+        "Sosyal",
+        "Hukuki",
+        "Psikolojik"
+      ],
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "isEmergency": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

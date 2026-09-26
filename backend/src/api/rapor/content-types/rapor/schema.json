@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rapors",
+  "info": {
+    "singularName": "rapor",
+    "pluralName": "rapors",
+    "displayName": "Rapor",
+    "description": "Rosa Kadın Derneği Raporları"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "desc": {
+      "type": "text",
+      "required": true
+    },
+    "imgUrl": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

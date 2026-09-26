@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "medias",
+  "info": {
+    "singularName": "media",
+    "pluralName": "medias",
+    "displayName": "Medya ve Rapor",
+    "description": "Öne çıkan medya ve raporlar (news, report, campaign)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "desc": {
+      "type": "text",
+      "required": true
+    },
+    "typeCode": {
+      "type": "enumeration",
+      "enum": [
+        "news",
+        "report",
+        "campaign"
+      ],
+      "required": true,
+      "default": "news"
+    },
+    "badge": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "string",
+      "required": true
+    },
+    "lang": {
+      "type": "enumeration",
+      "enum": [
+        "TR",
+        "KUR",
+        "EN",
+        "DE",
+        "FR"
+      ],
+      "default": "TR",
+      "required": true
+    }
+  }
+}
