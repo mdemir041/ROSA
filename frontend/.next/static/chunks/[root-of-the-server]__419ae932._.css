@@ -403,6 +403,7 @@
     --spacing: .25rem;
     --container-xs: 20rem;
     --container-md: 28rem;
+    --container-lg: 32rem;
     --container-xl: 36rem;
     --container-2xl: 42rem;
     --container-3xl: 48rem;
@@ -2169,6 +2170,10 @@
 
   .max-w-full {
     max-width: 100%;
+  }
+
+  .max-w-lg {
+    max-width: var(--container-lg);
   }
 
   .max-w-md {
@@ -5392,6 +5397,10 @@
     letter-spacing: var(--tracking-widest);
   }
 
+  .break-words {
+    overflow-wrap: break-word;
+  }
+
   .break-all {
     word-break: break-all;
   }
@@ -7351,6 +7360,10 @@
 
     .hover\:text-gray-600:hover {
       color: var(--color-gray-600);
+    }
+
+    .hover\:text-red-500:hover {
+      color: var(--color-red-500);
     }
 
     .hover\:text-red-600:hover {

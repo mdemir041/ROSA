@@ -8,7 +8,8 @@ import Image from '@tiptap/extension-image';
 import Superscript from '@tiptap/extension-superscript';
 import Subscript from '@tiptap/extension-subscript';
 import TextAlign from '@tiptap/extension-text-align';
-import { Sparkles, Bold, Italic, Underline as UnderlineIcon, Heading1, Heading2, Link2, Image as ImageIcon, Strikethrough, Superscript as SuperscriptIcon, Subscript as SubscriptIcon, Eraser, List, ListOrdered, AlignLeft, AlignCenter, AlignRight, AlignJustify } from 'lucide-react';
+import { Sparkles, Bold, Italic, Underline as UnderlineIcon, Heading1, Heading2, Link2, Image as ImageIcon, Strikethrough, Superscript as SuperscriptIcon, Subscript as SubscriptIcon, Eraser, List, ListOrdered, AlignLeft, AlignCenter, AlignRight, AlignJustify, X } from 'lucide-react';
+import ImageUploadField from './ImageUploadField';
 
 interface RichTextEditorProps {
   value: string;
@@ -54,9 +55,43 @@ const UrlModal = ({ isOpen, onClose, onSubmit, title, placeholder, initialValue 
   );
 };
 
+const ImageModal = ({ isOpen, onClose, onSubmit, title }: { isOpen: boolean, onClose: () => void, onSubmit: (val: string) => void, title: string }) => {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => { 
+    setMounted(true);
+  }, []);
+
+  if (!isOpen || !mounted) return null;
+
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="bg-white dark:bg-[#1A1622] rounded-2xl w-full max-w-lg p-6 shadow-2xl border border-gray-200 dark:border-white/10 animate-in zoom-in-95 duration-200 relative">
+        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors p-2 z-10 bg-white dark:bg-[#1A1622] rounded-full">
+          <X size={20} />
+        </button>
+        <div className="mt-2">
+          <ImageUploadField 
+             value="" 
+             onChange={(url) => { 
+               if(url) {
+                 onSubmit(url); 
+                 onClose(); 
+               }
+             }} 
+             label={title} 
+          />
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+};
+
 export default function RichTextEditor({ value, onChange, onOpenIconModal, placeholder }: RichTextEditorProps) {
   const [linkModalOpen, setLinkModalOpen] = useState(false);
   const [imageModalOpen, setImageModalOpen] = useState(false);
+  const [trigger, setTrigger] = useState(0);
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -99,10 +134,18 @@ export default function RichTextEditor({ value, onChange, onOpenIconModal, place
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
     },
+    onSelectionUpdate: ({ editor }) => {
+      // Force re-render to update toolbar button states
+      // Tiptap's useEditor should do this automatically, but sometimes it misses stored marks
+      setTrigger(prev => prev + 1);
+    },
+    onTransaction: ({ editor }) => {
+      setTrigger(prev => prev + 1);
+    }
   });
 
   useEffect(() => {
-    if (editor && value !== editor.getHTML()) {
+    if (editor && value !== editor.getHTML() && !editor.isFocused) {
       editor.commands.setContent(value);
     }
   }, [value, editor]);
@@ -249,12 +292,11 @@ export default function RichTextEditor({ value, onChange, onOpenIconModal, place
         placeholder="https://www.ornek.com"
       />
 
-      <UrlModal 
+      <ImageModal 
         isOpen={imageModalOpen}
         onClose={() => { setImageModalOpen(false); editor.commands.focus(); }}
         onSubmit={submitImage}
-        title="Görsel URL Ekle"
-        placeholder="https://www.ornek.com/gorsel.jpg"
+        title="Görsel Yükle veya Link Gir"
       />
       
       <style jsx global>{`

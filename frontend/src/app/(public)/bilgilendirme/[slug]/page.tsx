@@ -75,7 +75,7 @@ export default function BilgilendirmePage() {
             )}
             
             <div 
-              className="prose prose-lg dark:prose-invert max-w-none text-[#3D154B]/80 dark:text-[#E2D8F0] font-medium leading-relaxed mt-12 mb-16"
+              className="prose prose-lg dark:prose-invert max-w-none break-words text-[#3D154B]/80 dark:text-[#E2D8F0] font-medium leading-relaxed mt-12 mb-16"
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content || '<p>Bilgi içeriği henüz eklenmedi.</p>') }}
             />
           </article>

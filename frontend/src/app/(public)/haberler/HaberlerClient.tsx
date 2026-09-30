@@ -195,7 +195,7 @@ export default function HaberlerClient({ initialNews }: { initialNews: any[] }):
                 
                 {/* Text Content with Drop Cap */}
                 {selectedNews.content && (
-                  <div className="prose prose-lg sm:prose-xl dark:prose-invert max-w-none text-[#3D154B]/80 dark:text-white/70 font-medium leading-relaxed mb-16 prose-p:first-of-type:first-letter:text-7xl prose-p:first-of-type:first-letter:font-black prose-p:first-of-type:first-letter:text-[#6A4C93] dark:prose-p:first-of-type:first-letter:text-[#D4AF37] prose-p:first-of-type:first-letter:float-left prose-p:first-of-type:first-letter:mr-4 prose-p:first-of-type:first-letter:leading-[0.8] prose-a:text-[#D4AF37] prose-a:no-underline hover:prose-a:underline">
+                  <div className="prose prose-lg sm:prose-xl dark:prose-invert max-w-none break-words text-[#3D154B]/80 dark:text-white/70 font-medium leading-relaxed mb-16 prose-p:first-of-type:first-letter:text-7xl prose-p:first-of-type:first-letter:font-black prose-p:first-of-type:first-letter:text-[#6A4C93] dark:prose-p:first-of-type:first-letter:text-[#D4AF37] prose-p:first-of-type:first-letter:float-left prose-p:first-of-type:first-letter:mr-4 prose-p:first-of-type:first-letter:leading-[0.8] prose-a:text-[#D4AF37] prose-a:no-underline hover:prose-a:underline">
                     {parse(DOMPurify.sanitize(selectedNews.content), {
                       replace: (domNode) => {
                         if (domNode.type === 'text' && (domNode as Text).data) {

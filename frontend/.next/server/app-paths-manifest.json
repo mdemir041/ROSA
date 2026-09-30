@@ -1,4 +1,6 @@
 {
-  "/(admin)/admin/page": "app/(admin)/admin/page.js",
+  "/(admin)/admin/haberler/duzenle/[documentId]/page": "app/(admin)/admin/haberler/duzenle/[documentId]/page.js",
+  "/(admin)/admin/haberler/page": "app/(admin)/admin/haberler/page.js",
+  "/(public)/haberler/page": "app/(public)/haberler/page.js",
   "/(public)/page": "app/(public)/page.js"
 }

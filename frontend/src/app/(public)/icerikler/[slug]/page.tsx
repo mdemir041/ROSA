@@ -71,7 +71,7 @@ export default function IcerikPage() {
             )}
             
             <div 
-              className="prose prose-lg dark:prose-invert prose-purple max-w-none prose-headings:font-serif prose-headings:text-[#3D154B] dark:prose-headings:text-[#D4AF37]"
+              className="prose prose-lg dark:prose-invert prose-purple max-w-none break-words prose-headings:font-serif prose-headings:text-[#3D154B] dark:prose-headings:text-[#D4AF37]"
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content || '<p>İçerik henüz eklenmedi.</p>') }}
             />
           </article>

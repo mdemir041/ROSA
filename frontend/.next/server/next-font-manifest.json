@@ -1,6 +1,16 @@
 {
   "app": {
-    "[project]/src/app/(admin)/admin/page": [
+    "[project]/src/app/(admin)/admin/haberler/duzenle/[documentId]/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2",
+      "static/media/fba5a26ea33df6a3-s.p.1bbdebe6.woff2",
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2"
+    ],
+    "[project]/src/app/(admin)/admin/haberler/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2",
+      "static/media/fba5a26ea33df6a3-s.p.1bbdebe6.woff2",
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2"
+    ],
+    "[project]/src/app/(public)/haberler/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2",
       "static/media/fba5a26ea33df6a3-s.p.1bbdebe6.woff2",
       "static/media/2a65768255d6b625-s.p.d19752fb.woff2"
