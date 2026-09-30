@@ -45,26 +45,26 @@ export default function Navbar({ currentLang, onLangChange, onOpenDonateModal }:
       .catch(err => console.warn('Nav makaleleri çekilemedi:', err));
   }, [currentLang]);
 
+  const { pageData, loading } = useCMS();
+  const nt = pageData?.nav || NAV_TRANSLATIONS[currentLang] || NAV_TRANSLATIONS['TR'];
+
   const defaultIcerikler = [
-    { id: '1', slug: 'kadin-mucadelesinin-tarihi', title: 'Kadın Mücadelesinin Tarihi' },
-    { id: '2', slug: 'katledilen-kadinlar-icin-anma-sayfalari', title: 'Katledilen Kadınlar Anısına' },
-    { id: '3', slug: 'oncu-kadinlarin-yasam-oykuleri', title: 'Öncü Kadınların Öyküleri' },
-    { id: '4', slug: 'yerel-kadin-direnisleri', title: 'Yerel Kadın Direnişleri' }
+    { id: '1', slug: 'kadin-mucadelesinin-tarihi', title: nt?.icerik_tarih || 'Kadın Mücadelesinin Tarihi' },
+    { id: '2', slug: 'katledilen-kadinlar-icin-anma-sayfalari', title: nt?.icerik_anma || 'Katledilen Kadınlar Anısına' },
+    { id: '3', slug: 'oncu-kadinlarin-yasam-oykuleri', title: nt?.icerik_oncu || 'Öncü Kadınların Öyküleri' },
+    { id: '4', slug: 'yerel-kadin-direnisleri', title: nt?.icerik_yerel || 'Yerel Kadın Direnişleri' }
   ];
 
   const defaultBilgilendirme = [
-    { id: '1', slug: 'nafaka-hakki', title: 'Nafaka Hakkı' },
-    { id: '2', slug: 'istanbul-sozlesmesi', title: 'İstanbul Sözleşmesi' },
-    { id: '3', slug: 'kadin-yoksullugu', title: 'Kadın Yoksulluğu' },
-    { id: '4', slug: '6284-sayili-kanun', title: '6284 Sayılı Kanun' },
-    { id: '5', slug: 'haklariniz', title: 'Haklarınız' }
+    { id: '1', slug: 'nafaka-hakki', title: nt?.bilgi_nafaka || 'Nafaka Hakkı' },
+    { id: '2', slug: 'istanbul-sozlesmesi', title: nt?.bilgi_istanbul || 'İstanbul Sözleşmesi' },
+    { id: '3', slug: 'kadin-yoksullugu', title: nt?.bilgi_yoksulluk || 'Kadın Yoksulluğu' },
+    { id: '4', slug: '6284-sayili-kanun', title: nt?.bilgi_6284 || '6284 Sayılı Kanun' },
+    { id: '5', slug: 'haklariniz', title: nt?.bilgi_haklar || 'Haklarınız' }
   ];
 
   const displayIcerikler = dynamicIcerikler.length > 0 ? dynamicIcerikler : defaultIcerikler;
   const displayBilgilendirme = dynamicBilgilendirme.length > 0 ? dynamicBilgilendirme : defaultBilgilendirme;
-
-  const { pageData, loading } = useCMS();
-  const nt = pageData?.nav || NAV_TRANSLATIONS[currentLang] || NAV_TRANSLATIONS['TR'];
 
   const selectLanguage = (selectedLang: LanguageCode): void => {
     onLangChange(selectedLang);

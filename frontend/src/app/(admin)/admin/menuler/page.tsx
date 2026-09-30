@@ -7,20 +7,28 @@ import { NAV_TRANSLATIONS } from "@/constants/cms-database";
 import LanguageSelector from '@/components/admin/LanguageSelector';
 
 const FIELD_LABELS: Record<string, string> = {
-  kurumsal: "Kurumsal",
-  dayanisma: "Dayanışma",
-  galeri: "Galeri",
-  haberler: "Haberler",
-  raporlar: "Raporlar",
-  iletisim: "İletişim",
-  bagis: "Bağış Yap Butonu",
+  kurumsal: "Kurumsal Menü",
+  dayanisma: "Dayanışma Menü",
+  galeri: "Galeri Menü",
+  haberler: "Haberler Menü",
+  raporlar: "Raporlar Menü",
+  iletisim: "İletişim Menü",
   destek: "Destek Al Butonu",
   subHakkimizda: "Hakkımızda",
   subEkibimiz: "Ekibimiz",
   subSss: "Sıkça Sorulan Sorular",
   subBankaHesaplari: "Banka Hesaplarımız",
-  icerikler: "İçerikler (Label)",
-  bilgilendirme: "Bilgilendirme (Label)"
+  icerikler: "İçerikler (Açılır Menü Başlığı)",
+  bilgilendirme: "Bilgilendirme (Açılır Menü Başlığı)",
+  icerik_tarih: "Kadın Mücadelesinin Tarihi (İçerikler)",
+  icerik_anma: "Katledilen Kadınlar Anısına (İçerikler)",
+  icerik_oncu: "Öncü Kadınların Öyküleri (İçerikler)",
+  icerik_yerel: "Yerel Kadın Direnişleri (İçerikler)",
+  bilgi_nafaka: "Nafaka Hakkı (Bilgilendirme)",
+  bilgi_istanbul: "İstanbul Sözleşmesi (Bilgilendirme)",
+  bilgi_yoksulluk: "Kadın Yoksulluğu (Bilgilendirme)",
+  bilgi_6284: "6284 Sayılı Kanun (Bilgilendirme)",
+  bilgi_haklar: "Haklarınız (Bilgilendirme)"
 };
 
 export default function MenulerPage() {
@@ -38,7 +46,8 @@ export default function MenulerPage() {
         const res = await fetch(`/api/strapi/nav-translations?filters[lang][$eq]=${lang}`);
         const data = await res.json();
         if (data.data && data.data.length > 0) {
-          setFormData(data.data[0].data);
+          const fallbackData = NAV_TRANSLATIONS[lang as keyof typeof NAV_TRANSLATIONS] || NAV_TRANSLATIONS["TR"];
+          setFormData({ ...fallbackData, ...data.data[0].data });
           setDocumentId(data.data[0].documentId);
         } else {
           setFormData(NAV_TRANSLATIONS[lang as keyof typeof NAV_TRANSLATIONS] || NAV_TRANSLATIONS["TR"]);
@@ -88,14 +97,17 @@ export default function MenulerPage() {
   // Kategorilere göre alanları bölüyoruz
   const mainKeys = ['kurumsal', 'dayanisma', 'galeri', 'haberler', 'raporlar', 'iletisim'];
   const subKeys = ['subHakkimizda', 'subEkibimiz', 'subSss', 'subBankaHesaplari'];
-  const buttonKeys = ['bagis', 'destek'];
+  const buttonKeys = ['destek'];
   
-  const allKnownKeys = [...mainKeys, ...subKeys, ...buttonKeys];
-  const otherKeys = Object.keys(formData).filter(key => !allKnownKeys.includes(key));
+  const icerikKeys = ['icerik_tarih', 'icerik_anma', 'icerik_oncu', 'icerik_yerel'];
+  const bilgiKeys = ['bilgi_nafaka', 'bilgi_istanbul', 'bilgi_yoksulluk', 'bilgi_6284', 'bilgi_haklar'];
+  
+  const allKnownKeys = [...mainKeys, ...subKeys, ...buttonKeys, ...icerikKeys, ...bilgiKeys];
+  const otherKeys = Object.keys(formData).filter(key => !allKnownKeys.includes(key) && key !== 'bagis');
 
   const renderInput = (key: string) => (
-    <div key={key} className="group flex flex-col">
-      <label htmlFor={`input-${key}`} className="cursor-pointer block text-xs font-bold uppercase tracking-wider text-[#6A4C93] dark:text-gray-400 mb-2 ml-1">
+    <div key={key} className="group flex flex-col relative">
+      <label htmlFor={`input-${key}`} className="cursor-pointer block text-[11px] font-black uppercase tracking-[0.15em] text-[#6A4C93] dark:text-[#D4AF37] mb-2.5 ml-1 drop-shadow-sm transition-colors group-hover:text-[#3D154B] dark:group-hover:text-white">
         {FIELD_LABELS[key] || key}
       </label>
       <input
@@ -103,7 +115,7 @@ export default function MenulerPage() {
         type="text"
         value={formData[key] || ""}
         onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
-        className="w-full bg-white dark:bg-[#120F16] border border-[#6A4C93]/20 dark:border-white/10 rounded-xl px-4 py-3 text-[#3D154B] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#D4AF37] transition-all shadow-sm group-hover:border-[#6A4C93]/40 dark:group-hover:border-white/30"
+        className="w-full bg-white dark:bg-[#120F16] border border-[#6A4C93]/15 dark:border-white/10 rounded-xl px-5 py-3.5 text-[#3D154B] dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all shadow-sm group-hover:border-[#6A4C93]/40 dark:group-hover:border-white/30 group-hover:shadow-md"
         placeholder={`${FIELD_LABELS[key] || key} girin...`}
       />
     </div>
@@ -116,29 +128,35 @@ export default function MenulerPage() {
       <div className="flex justify-between items-center bg-white/60 dark:bg-[#2A2436]/40 backdrop-blur-xl border border-[#6A4C93]/10 dark:border-white/5 rounded-2xl p-6 shadow-xl shadow-[#6A4C93]/5">
         <div>
           <h1 className="text-2xl font-bold text-[#3D154B] dark:text-white flex items-center gap-3">
-            <Navigation className="text-[#D4AF37]" /> Menü Yönetimi
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6A4C93] to-[#3D154B] dark:from-[#D4AF37] dark:to-[#8B7322] flex items-center justify-center shadow-lg text-white dark:text-[#1A1520]">
+               <Navigation size={20} />
+            </div>
+            Menü & Navigasyon Yönetimi
           </h1>
-          <p className="text-[#6A4C93] dark:text-gray-400 mt-1 font-medium">Platformun üst menüsündeki ve alt başlıklardaki navigasyon terimlerini çok dilli olarak yönetin.</p>
+          <p className="text-[#6A4C93] dark:text-gray-400 mt-2 font-medium text-sm">Platformun üst menüsündeki ve alt başlıklardaki tüm navigasyon terimlerini çok dilli olarak, anlık güncelleyebilirsiniz.</p>
         </div>
       </div>
 
-      <div className="bg-white/60 dark:bg-[#2A2436]/40 backdrop-blur-xl border border-[#6A4C93]/10 dark:border-white/5 rounded-3xl p-8 lg:p-10 shadow-xl shadow-[#6A4C93]/5 relative">
+      <div className="bg-white/60 dark:bg-[#2A2436]/40 backdrop-blur-xl border border-[#6A4C93]/10 dark:border-white/5 rounded-3xl p-8 lg:p-10 shadow-2xl shadow-[#6A4C93]/5 relative overflow-hidden">
         
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-[#6A4C93]/10 dark:border-white/10 relative z-50">
-          <div className="flex items-center gap-4 bg-white/50 dark:bg-black/20 p-2 pl-4 rounded-2xl border border-[#6A4C93]/10 dark:border-white/5">
-            <label className="font-bold text-[#3D154B] dark:text-white">Dil Seçimi:</label>
+        {/* Subtle decorative background gradient */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#6A4C93]/5 dark:bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none -z-10 translate-x-1/2 -translate-y-1/2" />
+
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-[#6A4C93]/10 dark:border-white/10 relative z-10">
+          <div className="flex items-center gap-4 bg-white/80 dark:bg-black/30 p-2 pl-5 rounded-2xl border border-[#6A4C93]/20 dark:border-white/10 shadow-inner">
+            <label className="font-black text-[#3D154B] dark:text-[#D4AF37] text-sm uppercase tracking-wider">Dil Seçimi:</label>
             <LanguageSelector value={lang} onChange={setLang} />
           </div>
           {/* Sadece görsellik için */}
-          <div className="hidden sm:flex items-center gap-2 text-xs font-bold text-[#6A4C93] dark:text-[#D4AF37] uppercase tracking-wider bg-[#6A4C93]/5 dark:bg-[#D4AF37]/10 px-4 py-2 rounded-xl">
+          <div className="hidden sm:flex items-center gap-2 text-[10px] font-black text-[#6A4C93] dark:text-[#D4AF37] uppercase tracking-[0.2em] bg-[#6A4C93]/10 dark:bg-[#D4AF37]/10 px-4 py-2.5 rounded-xl border border-[#6A4C93]/20 dark:border-[#D4AF37]/20 shadow-sm">
             Aktif Dil: {lang}
           </div>
         </div>
 
         {initLoading ? (
-          <div className="py-20 flex flex-col items-center justify-center text-[#6A4C93]">
-            <Loader2 className="w-10 h-10 animate-spin mb-4 text-[#D4AF37]" />
-            <p className="font-medium">Menü verileri yükleniyor...</p>
+          <div className="py-32 flex flex-col items-center justify-center text-[#6A4C93]">
+            <Loader2 className="w-12 h-12 animate-spin mb-6 text-[#6A4C93] dark:text-[#D4AF37] drop-shadow-md" />
+            <p className="font-bold text-lg tracking-wide dark:text-gray-300">Menü verileri yükleniyor...</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-12 relative z-10">
@@ -148,7 +166,7 @@ export default function MenulerPage() {
               <h3 className="text-lg font-black text-[#3D154B] dark:text-white mb-6 flex items-center gap-2">
                 <Grid className="text-blue-500" /> Ana Navigasyon (Header)
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-white/30 dark:bg-black/10 p-6 rounded-2xl border border-white/40 dark:border-white/5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-blue-500/5 dark:bg-blue-500/10 p-6 sm:p-8 rounded-[2rem] border border-blue-500/20 shadow-inner">
                 {mainKeys.map(key => renderInput(key))}
               </div>
             </section>
@@ -156,12 +174,33 @@ export default function MenulerPage() {
             {/* Alt Menüler */}
             <section>
               <h3 className="text-lg font-black text-[#3D154B] dark:text-white mb-6 flex items-center gap-2">
-                <Layers className="text-purple-500" /> Açılır Menü Başlıkları (Dropdowns)
+                <Layers className="text-purple-500" /> Kurumsal Alt Menüleri
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-white/30 dark:bg-black/10 p-6 rounded-2xl border border-white/40 dark:border-white/5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-purple-500/5 dark:bg-purple-500/10 p-6 sm:p-8 rounded-[2rem] border border-purple-500/20 shadow-inner">
                 {subKeys.map(key => renderInput(key))}
               </div>
             </section>
+
+            {/* İçerikler ve Bilgilendirme Alt Menüleri */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <section>
+                <h3 className="text-lg font-black text-[#3D154B] dark:text-white mb-6 flex items-center gap-2">
+                  <Layers className="text-pink-500" /> İçerikler Alt Menüleri
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-pink-500/5 dark:bg-pink-500/10 p-6 sm:p-8 rounded-[2rem] border border-pink-500/20 shadow-inner">
+                  {icerikKeys.map(key => renderInput(key))}
+                </div>
+              </section>
+
+              <section>
+                <h3 className="text-lg font-black text-[#3D154B] dark:text-white mb-6 flex items-center gap-2">
+                  <Layers className="text-cyan-500" /> Bilgilendirme Alt Menüleri
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-cyan-500/5 dark:bg-cyan-500/10 p-6 sm:p-8 rounded-[2rem] border border-cyan-500/20 shadow-inner">
+                  {bilgiKeys.map(key => renderInput(key))}
+                </div>
+              </section>
+            </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Aksiyon Butonları */}
@@ -169,7 +208,7 @@ export default function MenulerPage() {
                 <h3 className="text-lg font-black text-[#3D154B] dark:text-white mb-6 flex items-center gap-2">
                   <Zap className="text-amber-500" /> Aksiyon Butonları (Call to Action)
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-amber-500/5 dark:bg-amber-500/5 p-6 rounded-2xl border border-amber-500/20">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-amber-500/5 dark:bg-amber-500/10 p-6 sm:p-8 rounded-[2rem] border border-amber-500/20 shadow-inner">
                   {buttonKeys.map(key => renderInput(key))}
                 </div>
               </section>
@@ -180,7 +219,7 @@ export default function MenulerPage() {
                   <h3 className="text-lg font-black text-[#3D154B] dark:text-white mb-6 flex items-center gap-2">
                     <MessageSquare className="text-emerald-500" /> Genel Arayüz Metinleri
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-emerald-500/5 dark:bg-emerald-500/5 p-6 rounded-2xl border border-emerald-500/20">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-emerald-500/5 dark:bg-emerald-500/10 p-6 sm:p-8 rounded-[2rem] border border-emerald-500/20 shadow-inner">
                     {otherKeys.map(key => renderInput(key))}
                   </div>
                 </section>

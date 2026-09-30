@@ -158,7 +158,16 @@ const NAV_TRANSLATIONS = {
         subSss: "Sıkça Sorulan Sorular",
         subBankaHesaplari: "Banka Hesaplarımız",
         icerikler: "İçerikler",
-        bilgilendirme: "Bilgilendirme"
+        bilgilendirme: "Bilgilendirme",
+        icerik_tarih: "Kadın Mücadelesinin Tarihi",
+        icerik_anma: "Katledilen Kadınlar Anısına",
+        icerik_oncu: "Öncü Kadınların Öyküleri",
+        icerik_yerel: "Yerel Kadın Direnişleri",
+        bilgi_nafaka: "Nafaka Hakkı",
+        bilgi_istanbul: "İstanbul Sözleşmesi",
+        bilgi_yoksulluk: "Kadın Yoksulluğu",
+        bilgi_6284: "6284 Sayılı Kanun",
+        bilgi_haklar: "Haklarınız"
     },
     KU: {
         kurumsal: "Sazî",
@@ -174,7 +183,16 @@ const NAV_TRANSLATIONS = {
         subSss: "Pirsên Pir Tên Pirsîn",
         subBankaHesaplari: "Hesabên Me Yên Bankeyê",
         icerikler: "Naverok",
-        bilgilendirme: "Agahî"
+        bilgilendirme: "Agahî",
+        icerik_tarih: "Dîroka Têkoşîna Jinan",
+        icerik_anma: "Bîranîna Jinên Qetilkirî",
+        icerik_oncu: "Çîrokên Jinên Pêşeng",
+        icerik_yerel: "Berxwedanên Jinên Herêmî",
+        bilgi_nafaka: "Mafê Nefeqeyê",
+        bilgi_istanbul: "Peymana Stenbolê",
+        bilgi_yoksulluk: "Xizaniya Jinan",
+        bilgi_6284: "Qanûna Jimare 6284",
+        bilgi_haklar: "Mafên We"
     },
     EN: {
         kurumsal: "About Us",
@@ -190,7 +208,16 @@ const NAV_TRANSLATIONS = {
         subSss: "FAQ",
         subBankaHesaplari: "Bank Accounts",
         icerikler: "Contents",
-        bilgilendirme: "Information"
+        bilgilendirme: "Information",
+        icerik_tarih: "History of Women's Struggle",
+        icerik_anma: "In Memory of Murdered Women",
+        icerik_oncu: "Stories of Pioneering Women",
+        icerik_yerel: "Local Women's Resistances",
+        bilgi_nafaka: "Right to Alimony",
+        bilgi_istanbul: "Istanbul Convention",
+        bilgi_yoksulluk: "Women's Poverty",
+        bilgi_6284: "Law No. 6284",
+        bilgi_haklar: "Your Rights"
     },
     DE: {
         kurumsal: "Über Uns",
@@ -206,7 +233,16 @@ const NAV_TRANSLATIONS = {
         subSss: "FAQ",
         subBankaHesaplari: "Bankkonten",
         icerikler: "Inhalte",
-        bilgilendirme: "Informationen"
+        bilgilendirme: "Informationen",
+        icerik_tarih: "Geschichte des Frauenkampfes",
+        icerik_anma: "Zum Gedenken an ermordete Frauen",
+        icerik_oncu: "Geschichten wegweisender Frauen",
+        icerik_yerel: "Lokale Frauenwiderstände",
+        bilgi_nafaka: "Recht auf Unterhalt",
+        bilgi_istanbul: "Istanbul-Konvention",
+        bilgi_yoksulluk: "Frauenarmut",
+        bilgi_6284: "Gesetz Nr. 6284",
+        bilgi_haklar: "Ihre Rechte"
     },
     FR: {
         kurumsal: "À Propos",
@@ -222,7 +258,16 @@ const NAV_TRANSLATIONS = {
         subSss: "FAQ",
         subBankaHesaplari: "Comptes bancaires",
         icerikler: "Contenus",
-        bilgilendirme: "Informations"
+        bilgilendirme: "Informations",
+        icerik_tarih: "Histoire de la lutte des femmes",
+        icerik_anma: "À la mémoire des femmes assassinées",
+        icerik_oncu: "Histoires de femmes pionnières",
+        icerik_yerel: "Résistances locales des femmes",
+        bilgi_nafaka: "Droit à la pension alimentaire",
+        bilgi_istanbul: "Convention d'Istanbul",
+        bilgi_yoksulluk: "Pauvreté des femmes",
+        bilgi_6284: "Loi n° 6284",
+        bilgi_haklar: "Vos droits"
     }
 };
 const CMS_DATABASE = {

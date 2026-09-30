@@ -214,6 +214,15 @@ export interface NavTranslation {
   subBankaHesaplari: string;
   icerikler: string;
   bilgilendirme: string;
+  icerik_tarih: string;
+  icerik_anma: string;
+  icerik_oncu: string;
+  icerik_yerel: string;
+  bilgi_nafaka: string;
+  bilgi_istanbul: string;
+  bilgi_yoksulluk: string;
+  bilgi_6284: string;
+  bilgi_haklar: string;
 }
 
 export interface ActiveModalState extends WorkModule {

@@ -52,59 +52,59 @@ function Navbar({ currentLang, onLangChange, onOpenDonateModal }) {
     }, [
         currentLang
     ]);
+    const { pageData, loading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$CMSContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCMS"])();
+    const nt = pageData?.nav || __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$constants$2f$cms$2d$database$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["NAV_TRANSLATIONS"][currentLang] || __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$constants$2f$cms$2d$database$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["NAV_TRANSLATIONS"]['TR'];
     const defaultIcerikler = [
         {
             id: '1',
             slug: 'kadin-mucadelesinin-tarihi',
-            title: 'Kadın Mücadelesinin Tarihi'
+            title: nt?.icerik_tarih || 'Kadın Mücadelesinin Tarihi'
         },
         {
             id: '2',
             slug: 'katledilen-kadinlar-icin-anma-sayfalari',
-            title: 'Katledilen Kadınlar Anısına'
+            title: nt?.icerik_anma || 'Katledilen Kadınlar Anısına'
         },
         {
             id: '3',
             slug: 'oncu-kadinlarin-yasam-oykuleri',
-            title: 'Öncü Kadınların Öyküleri'
+            title: nt?.icerik_oncu || 'Öncü Kadınların Öyküleri'
         },
         {
             id: '4',
             slug: 'yerel-kadin-direnisleri',
-            title: 'Yerel Kadın Direnişleri'
+            title: nt?.icerik_yerel || 'Yerel Kadın Direnişleri'
         }
     ];
     const defaultBilgilendirme = [
         {
             id: '1',
             slug: 'nafaka-hakki',
-            title: 'Nafaka Hakkı'
+            title: nt?.bilgi_nafaka || 'Nafaka Hakkı'
         },
         {
             id: '2',
             slug: 'istanbul-sozlesmesi',
-            title: 'İstanbul Sözleşmesi'
+            title: nt?.bilgi_istanbul || 'İstanbul Sözleşmesi'
         },
         {
             id: '3',
             slug: 'kadin-yoksullugu',
-            title: 'Kadın Yoksulluğu'
+            title: nt?.bilgi_yoksulluk || 'Kadın Yoksulluğu'
         },
         {
             id: '4',
             slug: '6284-sayili-kanun',
-            title: '6284 Sayılı Kanun'
+            title: nt?.bilgi_6284 || '6284 Sayılı Kanun'
         },
         {
             id: '5',
             slug: 'haklariniz',
-            title: 'Haklarınız'
+            title: nt?.bilgi_haklar || 'Haklarınız'
         }
     ];
     const displayIcerikler = dynamicIcerikler.length > 0 ? dynamicIcerikler : defaultIcerikler;
     const displayBilgilendirme = dynamicBilgilendirme.length > 0 ? dynamicBilgilendirme : defaultBilgilendirme;
-    const { pageData, loading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$CMSContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCMS"])();
-    const nt = pageData?.nav || __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$constants$2f$cms$2d$database$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["NAV_TRANSLATIONS"][currentLang] || __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$constants$2f$cms$2d$database$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["NAV_TRANSLATIONS"]['TR'];
     const selectLanguage = (selectedLang)=>{
         onLangChange(selectedLang);
         setIsLangOpen(false);
